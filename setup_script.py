@@ -117,6 +117,8 @@ try:
     gateway_version = args["GATEWAY_VERSION"]
     cenm_version = args["CENM_VERSION"]
     nms_visual_version = args["NMS_VISUAL_VERSION"]
+    node_plugin_version = args["NODE_PLUGIN_VERSION"]
+    flow_plugin_version = args["FLOW_PLUGIN_VERSION"]
     corda_version = args["NOTARY_VERSION"]
 except KeyError as e:
     raise KeyError(f"Missing variable in .env file: {e}")
@@ -135,6 +137,10 @@ def validate_arguments(args: argparse.Namespace):
         raise KeyError("CENM_VERSION is empty")
     if not nms_visual_version:
         raise KeyError("NMS_VISUAL_VERSION is empty")
+    if not node_plugin_version:
+        raise KeyError("NODE_PLUGIN_VERSION is empty")
+    if not flow_plugin_version:
+        raise KeyError("FLOW_PLUGIN_VERSION is empty")
     if not corda_version:
         raise KeyError("NOTARY_VERSION is empty")
     # Check if only one of the clean flags are used
@@ -207,6 +213,8 @@ def main(args: argparse.Namespace):
         gateway_version,
         cenm_version,
         nms_visual_version,
+        node_plugin_version,
+        flow_plugin_version,
         corda_version,
         args.run_node_deployment,
         args.deploy_without_angel

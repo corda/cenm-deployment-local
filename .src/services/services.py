@@ -47,6 +47,38 @@ class AuthPluginService(BaseService):
         self._handle_plugin()
         return self.error
 
+class AuthNodePluginService(BaseService):
+
+    def _handle_plugin(self):
+        if not self.sysi.path_exists(f'{self.dir}/plugins'):
+            self.sysi.run(f'mkdir {self.dir}/plugins')
+        self.sysi.run(f'mv {self._zip_name()} {self.dir}/plugins/auth-baseline-node-management-plugin.jar')
+
+    def download(self) -> bool:
+        if self._check_presence():
+            return
+        # If artifact not present then download it
+        print(f'Downloading {self._zip_name()}')
+        self.error = self.dlm.download(self.url)
+        self._handle_plugin()
+        return self.error
+
+class AuthFlowPluginService(BaseService):
+
+    def _handle_plugin(self):
+        if not self.sysi.path_exists(f'{self.dir}/plugins'):
+            self.sysi.run(f'mkdir {self.dir}/plugins')
+        self.sysi.run(f'mv {self._zip_name()} {self.dir}/plugins/auth-baseline-flow-management-plugin.jar')
+
+    def download(self) -> bool:
+        if self._check_presence():
+            return
+        # If artifact not present then download it
+        print(f'Downloading {self._zip_name()}')
+        self.error = self.dlm.download(self.url)
+        self._handle_plugin()
+        return self.error
+
 class GatewayService(DeploymentService):
 
     def _handle_gateway(self):
@@ -103,6 +135,46 @@ class GatewayPluginService(BaseService):
             self.sysi.run(f'mkdir -p {self.dir}/private/plugins')
         self.sysi.run(f'cp {self._zip_name()} {self.dir}/private/plugins/cenm-gateway-plugin.jar')
         self.sysi.run(f'mv {self._zip_name()} {self.dir}/public/plugins/cenm-gateway-plugin.jar')
+
+    def download(self) -> bool:
+        self._clone_repo()
+        if self._check_presence():
+            return
+        # If artifact not present then download it
+        print(f'Downloading {self._zip_name()}')
+        self.error = self.dlm.download(self.url)
+        self._handle_plugin()
+        return self.error
+
+class NodePluginService(BaseService):
+
+    def _handle_plugin(self):
+        if not self.sysi.path_exists(f'{self.dir}/public/plugins'):
+            self.sysi.run(f'mkdir -p {self.dir}/public/plugins')
+        if not self.sysi.path_exists(f'{self.dir}/private/plugins'):
+            self.sysi.run(f'mkdir -p {self.dir}/private/plugins')
+        self.sysi.run(f'cp {self._zip_name()} {self.dir}/private/plugins/node-management-plugin.jar')
+        self.sysi.run(f'mv {self._zip_name()} {self.dir}/public/plugins/node-management-plugin.jar')
+
+    def download(self) -> bool:
+        self._clone_repo()
+        if self._check_presence():
+            return
+        # If artifact not present then download it
+        print(f'Downloading {self._zip_name()}')
+        self.error = self.dlm.download(self.url)
+        self._handle_plugin()
+        return self.error
+
+class FlowPluginService(BaseService):
+
+    def _handle_plugin(self):
+        if not self.sysi.path_exists(f'{self.dir}/public/plugins'):
+            self.sysi.run(f'mkdir -p {self.dir}/public/plugins')
+        if not self.sysi.path_exists(f'{self.dir}/private/plugins'):
+            self.sysi.run(f'mkdir -p {self.dir}/private/plugins')
+        self.sysi.run(f'cp {self._zip_name()} {self.dir}/private/plugins/flow-management-plugin.jar')
+        self.sysi.run(f'mv {self._zip_name()} {self.dir}/public/plugins/flow-management-plugin.jar')
 
     def download(self) -> bool:
         self._clone_repo()

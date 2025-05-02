@@ -71,6 +71,8 @@ This is a complete Python framework for deploying an enterprise grade CENM deplo
     CENM_VERSION=<cenm_version>
     NMS_VISUAL_VERSION=<nms_visual_version>
     NOTARY_VERSION=<corda_version>
+    NODE_PLUGIN_VERSION=<node_management_plugin_version>
+    FLOW_PLUGIN_VERSION=<flow_management_plugin_version>
     ```
 
     _Note: It is not recommended that you use a Corda version lower than 4.8.X these versions are no longer supported and might cause deployment problems._
@@ -175,6 +177,30 @@ python3 setup_script.py --run-default-deployment
 ```
 
 without the `--clean-runtime` flag, this will start up your network and skip over any 'first-time' setup.
+
+### Node and Flow Management Plugins
+
+Configuration needs to be specified in gateway.conf for the node and flow management plugins. Currently the following
+configuration has been specified in gateway.conf. This is the same in both private and public gateway directories.
+
+```
+node.management.plugin.middleware {
+    rpcUsername ="testuser"
+    rpcPassword ="password"
+    rpcHost = "127.0.0.1"
+    rpcPort = 60012
+}
+
+flow.management.plugin.middleware {
+    rpcUsername ="testuser"
+    rpcPassword ="password"
+    rpcHost = "127.0.0.1"
+    rpcPort = 60012
+}
+```
+It would be a useful enhancement to this script to insert in gateway.conf the details of nodes this 
+script spins up, if it does spin up any. This is not currently implemented. The gateway.conf by default is the
+above, however it can also be manually edited.
 
 ## Deployment Order
 
