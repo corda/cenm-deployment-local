@@ -31,6 +31,7 @@ class Constants(Enum):
     ENM_PACKAGE = 'r3-enterprise-network-manager/com/r3/enm'
     CORDA_PACKAGE = 'r3-corda-releases/com/r3/corda'
     CORDAPP_PACKAGE = 'corda-releases/net/corda'
+    CORDA_PLUGIN_PACKAGE = 'corda-gateway-plugins/com/r3/corda'
 
     MSSQL_DRIVER = 'https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/8.2.2.jre8/mssql-jdbc-8.2.2.jre8.jar'
     POSTGRES_DRIVER = 'https://repo1.maven.org/maven2/org/postgresql/postgresql/42.5.2/postgresql-42.5.2.jar'
@@ -141,12 +142,16 @@ class Printer:
         auth_version: str,
         gateway_version: str,
         nms_visual_version: str,
+        node_plugin_version: str,
+        flow_plugin_version: str,
         corda_version: str
     ):
         self.cenm_version = cenm_version
         self.auth_version = auth_version
         self.gateway_version = gateway_version
         self.nms_visual_version = nms_visual_version
+        self.node_plugin_version = node_plugin_version
+        self.flow_plugin_version = flow_plugin_version
         self.corda_version = corda_version
 
     def print_cenm_version(self):
@@ -154,17 +159,21 @@ class Printer:
 CENM local deployment manager
 =====================================
 
-Current CENM version:    {}
-Current Auth version:    {}
-Current Gateway version: {}
-Current NMS version:     {}
+Current CENM version:        {}
+Current Auth version:        {}
+Current Gateway version:     {}
+Current NMS version:         {}
+Current Node plugin version: {}
+Current Flow plugin version: {}
 
-Current Corda version:   {}
+Current Corda version:       {}
         """.format(
             self.cenm_version,
             self.auth_version,
             self.gateway_version,
             self.nms_visual_version,
+            self.node_plugin_version,
+            self.flow_plugin_version,
             self.corda_version
         ))
 

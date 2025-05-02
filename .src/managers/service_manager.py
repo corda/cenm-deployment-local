@@ -45,6 +45,8 @@ class ServiceManager:
         gateway_version: str,
         cenm_version: str,
         nms_visual_version: str,
+        node_plugin_version: str,
+        flow_plugin_version: str,
         corda_version: str,
         node_count: int,
         deploy_without_angel: bool
@@ -64,8 +66,11 @@ class ServiceManager:
             auth_version,
             gateway_version,
             nms_visual_version,
+            node_plugin_version,
+            flow_plugin_version,
             corda_version
         )
+        self.corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE.value
         if deploy_without_angel:
             self.deploy_time = DeployTimeConstants
         else:
@@ -104,6 +109,24 @@ class ServiceManager:
             url=            f'{self.base_url}/{self.enm_package}',
             username=       username,
             password=       password)
+        self.AUTH_NODE_PLUGIN = AuthNodePluginService(
+            abb=            'auth-node-plugin',
+            dir=            'auth',
+            artifact_name=  'auth-baseline-node-management-plugin',
+            version=        node_plugin_version,
+            ext=            'jar',
+            url=            f'{self.base_url}/{self.corda_plugin_package}/node/management/plugin',
+            username=       username,
+            password=       password)
+        self.AUTH_FLOW_PLUGIN = AuthFlowPluginService(
+            abb=            'auth-flow-plugin',
+            dir=            'auth',
+            artifact_name=  'auth-baseline-flow-management-plugin',
+            version=        flow_plugin_version,
+            ext=            'jar',
+            url=            f'{self.base_url}/{self.corda_plugin_package}/flow/management/plugin',
+            username=       username,
+            password=       password)
         self.GATEWAY = GatewayService(
             abb=            'gateway',
             dir=            'gateway',
@@ -124,6 +147,24 @@ class ServiceManager:
             version=        nms_visual_version,
             ext=            'jar',
             url=            f'{self.base_url}/{self.enm_package}',
+            username=       username,
+            password=       password)
+        self.NODE_PLUGIN = NodePluginService(
+            abb=            'node-plugin',
+            dir=            'gateway',
+            artifact_name=  'node-management-plugin',
+            version=        node_plugin_version,
+            ext=            'jar',
+            url=            f'{self.base_url}/{self.corda_plugin_package}/node/management/plugin',
+            username=       username,
+            password=       password)
+        self.FLOW_PLUGIN = FlowPluginService(
+            abb=            'flow-plugin',
+            dir=            'gateway',
+            artifact_name=  'flow-management-plugin',
+            version=        flow_plugin_version,
+            ext=            'jar',
+            url=            f'{self.base_url}/{self.corda_plugin_package}/flow/management/plugin',
             username=       username,
             password=       password)
         self.CLI = CliToolService(
@@ -345,7 +386,11 @@ class ServiceManager:
             self.SIGNER,
             self.SIGNER_CA_PLUGIN,
             self.SIGNER_NONCA_PLUGIN,
-            self.ZONE
+            self.ZONE,
+            self.NODE_PLUGIN,
+            self.AUTH_NODE_PLUGIN,
+            self.FLOW_PLUGIN,
+            self.AUTH_FLOW_PLUGIN
         ]
 
     def _get_node_manager(self) -> NodeManager:
