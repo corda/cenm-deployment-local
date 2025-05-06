@@ -52,7 +52,7 @@ This is a complete Python framework for deploying an enterprise grade CENM deplo
 1. Clone this repo locally:
 
     ```shell
-    git clone https://github.com/tomstark99/cenm-deployment-local.git
+    git clone https://github.com/corda/cenm-deployment-local.git
     ```
 
 2. Copy and rename the `.env.template` file to `.env`, here you will fill in your credentials
