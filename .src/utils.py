@@ -26,7 +26,7 @@ def deprecated(func):
 
 class Constants(Enum):
     BASE_URL = 'https://software.r3.com/artifactory'
-    GITHUB_URL = 'https://github.com/tomstark99'
+    GITHUB_URL = 'https://github.com/corda'
     EXT_PACKAGE = 'extensions-lib-release-local/com/r3/appeng'
     ENM_PACKAGE = 'r3-enterprise-network-manager/com/r3/enm'
     CORDA_PACKAGE = 'r3-corda-releases/com/r3/corda'
