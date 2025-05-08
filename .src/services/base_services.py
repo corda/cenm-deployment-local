@@ -67,7 +67,7 @@ class BaseService(ABC):
     def _clone_repo(self):
         if not self.sysi.path_exists(self.dir):
             print(f'Cloning {self.dir}')
-            self.sysi.run(f'git clone {Constants.GITHUB_URL.value}/{self.dir}.git --quiet')
+            self.sysi.run(f'git clone {Constants.GITHUB_URL.value}/{self.dir}-deployment-local.git {self.dir} --quiet')
 
     def _check_presence(self) -> bool:
         for _, _, files in os.walk(self.dir):
