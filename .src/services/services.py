@@ -42,7 +42,7 @@ class AuthPluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -58,7 +58,7 @@ class AuthNodePluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -74,7 +74,7 @@ class AuthFlowPluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -90,7 +90,7 @@ class GatewayService(DeploymentService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_gateway()
         return self.error
@@ -141,7 +141,7 @@ class GatewayPluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -161,7 +161,7 @@ class NodePluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -181,7 +181,7 @@ class FlowPluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -199,7 +199,7 @@ class CliToolService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_cli_tool()
         return self.error
@@ -263,7 +263,7 @@ class CrrToolService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_crr_tool()
         return self.error
@@ -360,7 +360,7 @@ class CordaShellService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_corda_shell()
         return self.error
@@ -380,7 +380,7 @@ class CordaToolsHaUtilitiesService(DeploymentService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._move()
         return self.error
@@ -406,7 +406,7 @@ class PkiToolService(DeploymentService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._move()
         return self.error

@@ -85,7 +85,7 @@ class BaseService(ABC):
         if self._check_presence():
             return #self.dlm.validate_download(self.url)
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._move()
         return self.error
@@ -109,7 +109,7 @@ class SignerPluginService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_plugin()
         return self.error
@@ -127,7 +127,7 @@ class CordappService(BaseService):
         if self._check_presence():
             return
         # If artifact not present then download it
-        print(f'Downloading {self._zip_name()}')
+        print(f'Downloading {self._zip_name()} from {self.url}')
         self.error = self.dlm.download(self.url)
         self._handle_cordapp()
         return self.error

@@ -52,7 +52,10 @@ class ServiceManager:
         deploy_without_angel: bool
     ):
         self.base_url = Constants.BASE_URL.value
-        self.ext_package = Constants.EXT_PACKAGE.value
+        if auth_version.endswith("-SNAPSHOT") and gateway_version.endswith("-SNAPSHOT"):
+            self.ext_package = Constants.EXT_PACKAGE_DEV.value
+        else:
+            self.ext_package = Constants.EXT_PACKAGE.value
         self.enm_package = Constants.ENM_PACKAGE.value
         self.corda_package = Constants.CORDA_PACKAGE.value
         self.cordapp_package = Constants.CORDAPP_PACKAGE.value
