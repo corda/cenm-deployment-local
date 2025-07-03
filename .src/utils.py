@@ -33,6 +33,7 @@ class Constants(Enum):
     CORDA_PACKAGE = 'r3-corda-releases/com/r3/corda'
     CORDAPP_PACKAGE = 'corda-releases/net/corda'
     CORDA_PLUGIN_PACKAGE = 'corda-gateway-plugins/com/r3/corda'
+    CORDA_PLUGIN_PACKAGE_DEV = 'corda-gateway-plugins-dev/com/r3/corda'
 
     MSSQL_DRIVER = 'https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/8.2.2.jre8/mssql-jdbc-8.2.2.jre8.jar'
     POSTGRES_DRIVER = 'https://repo1.maven.org/maven2/org/postgresql/postgresql/42.5.2/postgresql-42.5.2.jar'
