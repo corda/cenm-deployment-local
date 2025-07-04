@@ -73,7 +73,16 @@ class ServiceManager:
             flow_plugin_version,
             corda_version
         )
-        self.corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE.value
+        if node_plugin_version.endswith("-SNAPSHOT"):
+            self.node_corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE_DEV.value
+        else:
+            self.node_corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE.value
+
+        if flow_plugin_version.endswith("-SNAPSHOT"):
+            self.flow_corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE_DEV.value
+        else:
+            self.flow_corda_plugin_package = Constants.CORDA_PLUGIN_PACKAGE.value
+
         if deploy_without_angel:
             self.deploy_time = DeployTimeConstants
         else:
@@ -118,7 +127,7 @@ class ServiceManager:
             artifact_name=  'auth-baseline-node-management-plugin',
             version=        node_plugin_version,
             ext=            'jar',
-            url=            f'{self.base_url}/{self.corda_plugin_package}/node/management/plugin',
+            url=            f'{self.base_url}/{self.node_corda_plugin_package}/node/management/plugin',
             username=       username,
             password=       password)
         self.AUTH_FLOW_PLUGIN = AuthFlowPluginService(
@@ -127,7 +136,7 @@ class ServiceManager:
             artifact_name=  'auth-baseline-flow-management-plugin',
             version=        flow_plugin_version,
             ext=            'jar',
-            url=            f'{self.base_url}/{self.corda_plugin_package}/flow/management/plugin',
+            url=            f'{self.base_url}/{self.flow_corda_plugin_package}/flow/management/plugin',
             username=       username,
             password=       password)
         self.GATEWAY = GatewayService(
@@ -158,7 +167,7 @@ class ServiceManager:
             artifact_name=  'node-management-plugin',
             version=        node_plugin_version,
             ext=            'jar',
-            url=            f'{self.base_url}/{self.corda_plugin_package}/node/management/plugin',
+            url=            f'{self.base_url}/{self.node_corda_plugin_package}/node/management/plugin',
             username=       username,
             password=       password)
         self.FLOW_PLUGIN = FlowPluginService(
@@ -167,7 +176,7 @@ class ServiceManager:
             artifact_name=  'flow-management-plugin',
             version=        flow_plugin_version,
             ext=            'jar',
-            url=            f'{self.base_url}/{self.corda_plugin_package}/flow/management/plugin',
+            url=            f'{self.base_url}/{self.flow_corda_plugin_package}/flow/management/plugin',
             username=       username,
             password=       password)
         self.CLI = CliToolService(
