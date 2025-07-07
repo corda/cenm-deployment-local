@@ -188,14 +188,14 @@ node.management.plugin.middleware {
     rpcUsername ="testuser"
     rpcPassword ="password"
     rpcHost = "127.0.0.1"
-    rpcPort = 60012
+    rpcPort = 60112
 }
 
 flow.management.plugin.middleware {
     rpcUsername ="testuser"
     rpcPassword ="password"
     rpcHost = "127.0.0.1"
-    rpcPort = 60012
+    rpcPort = 60112
 }
 ```
 It would be a useful enhancement to this script to insert in gateway.conf the details of nodes this 
